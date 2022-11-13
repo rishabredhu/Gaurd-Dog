@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Known Face</title>
+
+    <link rel="stylesheet" type="text/css" href="css/known_face/known_face.css" />
+    <script type="text/javascript" src="js/api/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="js/api/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="js/api/apigClient.js"></script>
+</head>
+
+<body>
+
+    <!-- The buttons to control the stream -->
+    <div class="button-group">
+        <button id="btn-start" type="button" class="button">Start Streaming</button>
+        <button id="btn-stop" type="button" class="button" disabled>Stop Streaming</button>
+        <button id="btn-capture" type="button" class="button" disabled>Capture Image</button>
+        <form id="label-form">
+            <input type="text" name="label" id="label" placeholder="label" />
+            <!-- <input id="btn-save" value="Save Image" type="submit" class="button" disabled /> -->
+            <button id="btn-save" value="Save Image" disabled>Save Image</button>
+        </form>
+    </div>
+
+    <!-- Video Element & Canvas -->
+    <div class="play-area">
+        <div class="play-area-sub">
+            <h3>The Stream</h3>
+            <video id="stream" width="320" height="240"></video>
+        </div>
+        <div class="play-area-sub">
+            <h3>The Capture</h3>
+            <canvas id="capture" width="320" height="240"></canvas>
+            <div id="snapshot"></div>
+        </div>
+    </div>
+    <input type="file" name="" id="video-file" hidden>
+    <script src="js/known_face/known_face.js"></script>
+</body>
+
+</html>

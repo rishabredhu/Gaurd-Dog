@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Cam Streaming</title>
+    <link rel="stylesheet" type="text/css" href="css/index/index.css" />
+
+    <script type="text/javascript" src="js/api/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="js/api/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="js/api/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="js/api/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="js/api/apigClient.js"></script>
+
+</head>
+
+<body>
+
+    <div id="videos">
+        <video class="video-player" id="user-video" autoplay playsinline width="100%" height="100%"
+            style="background-color: rgb(3, 3, 3);"></video>
+        <button id="start-video">Start</button>
+        <button id="stop-video" disabled>Stop</button>
+        <input type="file" name="" id="video-file" hidden>
+    </div>
+
+
+    <script src="js/index/video.js"></script>
+</body>
+
+</html>
