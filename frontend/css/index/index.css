@@ -1,23 +1,9 @@
-button {
-    margin: 0 3px 10px 0;
-    padding-left: 2px;
-    padding-right: 2px;
-    width: 99px;
+#capture {
+    display: none;
 }
 
-button:last-of-type {
-    margin: 0;
-}
-
-p.borderBelow {
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0;
-}
-
-video {
-    vertical-align: top;
-    --width: 25vw;
-    width: var(--width);
-    height: calc(var(--width) * 0.5625);
-    margin: 0 0 20px 0;
+#snapshot {
+    display: inline-block;
+    width: 320px;
+    height: 240px;
 }

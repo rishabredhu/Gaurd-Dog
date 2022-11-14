@@ -53,7 +53,7 @@ apigClientFactory.newClient = function (config) {
 
     
     // extract endpoint and path from url
-    var invokeUrl = 'https://76g6bx2581.execute-api.us-east-1.amazonaws.com/staging';
+    var invokeUrl = 'https://84t59dzo7c.execute-api.us-east-1.amazonaws.com/prod';
     var endpoint = /(^https?:\/\/[^\/]+)/g.exec(invokeUrl)[1];
     var pathComponent = invokeUrl.substring(endpoint.length);
 
@@ -81,6 +81,60 @@ apigClientFactory.newClient = function (config) {
 
     var apiGatewayClient = apiGateway.core.apiGatewayClientFactory.newClient(simpleHttpClientConfig, sigV4ClientConfig);
     
+    
+    
+    apigClient.alertsGet = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['userid'], ['body']);
+        
+        var alertsGetRequest = {
+            verb: 'get'.toUpperCase(),
+            path: pathComponent + uritemplate('/alerts').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['userid']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(alertsGetRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.alertsPut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['userid', 'label'], ['body']);
+        
+        var alertsPutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/alerts').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['userid', 'label']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(alertsPutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.alertsOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var alertsOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/alerts').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(alertsOptionsRequest, authType, additionalParams, config.apiKey);
+    };
     
     
     apigClient.knownfaceGet = function (params, body, additionalParams) {
@@ -119,39 +173,93 @@ apigClientFactory.newClient = function (config) {
     };
     
     
-    apigClient.uploadStreamGet = function (params, body, additionalParams) {
+    apigClient.knownfaceLabelGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, ['userid'], ['body']);
         
-        var uploadStreamGetRequest = {
+        var knownfaceLabelGetRequest = {
             verb: 'get'.toUpperCase(),
-            path: pathComponent + uritemplate('/upload_stream').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            path: pathComponent + uritemplate('/knownface/label').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['userid']),
             body: body
         };
         
         
-        return apiGatewayClient.makeRequest(uploadStreamGetRequest, authType, additionalParams, config.apiKey);
+        return apiGatewayClient.makeRequest(knownfaceLabelGetRequest, authType, additionalParams, config.apiKey);
     };
     
     
-    apigClient.uploadStreamOptions = function (params, body, additionalParams) {
+    apigClient.knownfaceLabelPost = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['userid', 'label'], ['body']);
+        
+        var knownfaceLabelPostRequest = {
+            verb: 'post'.toUpperCase(),
+            path: pathComponent + uritemplate('/knownface/label').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['userid', 'label']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(knownfaceLabelPostRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.knownfaceLabelOptions = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
         
-        var uploadStreamOptionsRequest = {
+        var knownfaceLabelOptionsRequest = {
             verb: 'options'.toUpperCase(),
-            path: pathComponent + uritemplate('/upload_stream').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            path: pathComponent + uritemplate('/knownface/label').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
         
         
-        return apiGatewayClient.makeRequest(uploadStreamOptionsRequest, authType, additionalParams, config.apiKey);
+        return apiGatewayClient.makeRequest(knownfaceLabelOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.knownfaceLabelDeletePut = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, ['userid', 'label'], ['body']);
+        
+        var knownfaceLabelDeletePutRequest = {
+            verb: 'put'.toUpperCase(),
+            path: pathComponent + uritemplate('/knownface/label/delete').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['userid', 'label']),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(knownfaceLabelDeletePutRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.knownfaceLabelDeleteOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var knownfaceLabelDeleteOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/knownface/label/delete').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(knownfaceLabelDeleteOptionsRequest, authType, additionalParams, config.apiKey);
     };
     
 

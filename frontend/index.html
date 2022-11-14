@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-Cam Streaming</title>
+    <title>Known Face</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/index/index.css" />
-
     <script type="text/javascript" src="js/api/lib/axios/dist/axios.standalone.js"></script>
     <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/hmac-sha256.js"></script>
     <script type="text/javascript" src="js/api/lib/CryptoJS/rollups/sha256.js"></script>
@@ -20,20 +21,127 @@
     <script type="text/javascript" src="js/api/lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="js/api/apigClient.js"></script>
 
+    <link rel="icon" type="image/gif/jpg" href="favicon.jpg">
+
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">GuardDog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Known Face</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="timeline.html">Timeline</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-2 text-primary border border-info">
+        <h1 class="text-center">
+            Add Labels
+        </h1>
+        <div class="row">
+            <div class="d-flex justify-content-center m-2">
+                <form id="add-label-form">
+                    <div class="mb-3">
+                        <label for="new-label" class="form-label">New Label</label>
+                        <input type="text" class="form-control" name="new-label" id="new-label" required />
+                    </div>
 
-    <div id="videos">
-        <video class="video-player" id="user-video" autoplay playsinline width="100%" height="100%"
-            style="background-color: rgb(3, 3, 3);"></video>
-        <button id="start-video">Start</button>
-        <button id="stop-video" disabled>Stop</button>
-        <input type="file" name="" id="video-file" hidden>
+                    <button id="btn-add-label" class="btn btn-outline-primary">Add
+                        Label</button>
+                </form>
+            </div>
+        </div>
+
     </div>
+    <div class="container mt-2 text-primary border border-info">
+        <h1 class="text-center">
+            Delete Labels
+        </h1>
+        <div class="row">
+            <div class="d-flex justify-content-center m-2">
+                <form id="delete-label-form">
+                    <div class="mb-3">
+                        <label for="delete-label" class="form-label">Delete Label</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            id="delete-label" required>
+                        </select>
+                    </div>
+
+                    <button id="btn-delete-label" class="btn btn-outline-primary">Delete
+                        Label</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="container mt-2 text-primary border border-info">
+        <h1 class="text-center">
+            Add Known Face
+        </h1>
+        <!-- The buttons to control the stream -->
+        <div class="row">
+            <div class="d-flex justify-content-center m-2">
+                <button id="btn-start" type="button" class="btn btn-outline-primary m-1">Start Streaming</button>
+                <button id="btn-stop" type="button" class="btn btn-outline-primary m-1" disabled>Stop Streaming</button>
+                <button id="btn-capture" type="button" class="btn btn-outline-primary m-1" disabled>Capture
+                    Image</button>
+            </div>
+            <div class="d-flex justify-content-center m-2">
+                <form id="label-form">
+                    <div class="mb-3">
+                        <label for="label" class="form-label">Label</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="label"
+                            required>
+                        </select>
+                    </div>
 
 
-    <script src="js/index/video.js"></script>
+
+                    <button id="btn-save" value="Save Image" class="btn btn-outline-primary" disabled>Save
+                        Image</button>
+                </form>
+
+            </div>
+
+
+            <!-- Video Element & Canvas -->
+            <div class="d-flex justify-content-center m-2 text-center">
+                <div class="border border-info">
+                    <h3>Web Cam</h3>
+                    <video id="stream" width="320" height="240"></video>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center m-2 text-center">
+                <div class="border border-info">
+                    <h3>Image</h3>
+                    <canvas id="capture" width="320" height="240"></canvas>
+                    <div id="snapshot"></div>
+                </div>
+                <input type="file" name="" id="video-file" hidden>
+            </div>
+        </div>
+    </div>
+    <script src="js/index/index.js"></script>
+    <script src="js/index/form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

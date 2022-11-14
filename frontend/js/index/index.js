@@ -95,7 +95,7 @@ function captureSnapshot() {
         var ctx = capture.getContext('2d');
         var img = new Image();
 
-        ctx.drawImage(stream, 0, 0, 300, 320);
+        ctx.drawImage(stream, 0, 0, 320, 240);
 
         img.src = capture.toDataURL("image/png");
         // img.width = 240;

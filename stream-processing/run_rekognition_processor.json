@@ -1,0 +1,20 @@
+{
+    "Name": "streamProcessorForRekognitionVideoBlog",
+    "Input": {
+        "KinesisVideoStream": {
+            "Arn": "arn:aws:kinesisvideo:us-east-1:290851490523:stream/RekognitionVideoLiveStream/1668277326509"
+        }
+    },
+    "Output": {
+        "KinesisDataStream": {
+            "Arn": "arn:aws:kinesis:us-east-1:290851490523:stream/GuardDog-Stream"
+        }
+    },
+    "RoleArn": "arn:aws:iam::290851490523:role/GuardDog-RekognitionVideoIAM-LJ905G4CULGA",
+    "Settings": {
+        "FaceSearch": {
+            "CollectionId": "eashankaushik",
+            "FaceMatchThreshold": 85.5
+        }
+    }
+}

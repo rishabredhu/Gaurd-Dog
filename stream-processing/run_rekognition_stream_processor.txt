@@ -1,0 +1,14 @@
+# Create Stream
+aws rekognition create-stream-processor --region us-east-1 --cli-input-json file://run_rekognition_processor.json
+
+# Run Stream
+aws rekognition start-stream-processor --name streamProcessorForRekognitionVideoBlog --region us-east-1
+
+# Check Status
+aws rekognition list-stream-processors --region us-east-1
+
+
+# Stop Stream
+aws rekognition stop-stream-processor --name streamProcessorForRekognitionVideoBlog --region us-east-1
+# Delete Stream
+aws rekognition delete-stream-processor --name streamProcessorForRekognitionVideoBlog --region us-east-1

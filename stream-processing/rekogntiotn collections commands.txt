@@ -1,0 +1,4 @@
+aws rekognition list faces --collection-id "eashankaushik"
+aws rekognition list-collections
+aws rekognition delete-collection --collection-id "eashankaushik"
+aws rekognition delete-faces --collection-id "eashankaushik" --face-ids "fb378c80-af1a-4e74-b492-0525bfedeab9"]
