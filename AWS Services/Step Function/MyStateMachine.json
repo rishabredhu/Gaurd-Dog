@@ -1,0 +1,61 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Choice",
+    "States": {
+        "Choice": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.detection",
+                    "StringEquals": "MachedFaces",
+                    "Next": "Mached Face"
+                }
+            ],
+            "Default": "Unmached Face"
+        },
+        "Mached Face": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$",
+                "FunctionName": "arn:aws:lambda:us-east-1:290851490523:function:GuardDog-MatchedFace:$LATEST"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "End": true
+        },
+        "Unmached Face": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$",
+                "FunctionName": "arn:aws:lambda:us-east-1:290851490523:function:GuardDog-UnmachedFace:$LATEST"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "End": true
+        }
+    }
+}

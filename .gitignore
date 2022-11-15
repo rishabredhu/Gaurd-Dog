@@ -2,6 +2,7 @@ run_stream.txt
 amazon-kinesis-video-streams-producer-sdk-cpp/
 credentials.txt
 credentials.jpg
+stream-processing/
 
 #official python gitignore
 # Byte-compiled / optimized / DLL files

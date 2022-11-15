@@ -1,0 +1,4 @@
+1. Create Kinesis Video Stream AWS Management Console
+2. git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp && cd amazon-kinesis-video-streams-producer-sdk-cpp && git checkout 75087f5a90a02a47191c9278cfec329e09535e98
+3. Inside mingw32 or mingw64 shell, go to kinesis-video-native-build directory and run ./min-install-script
+4. AWS_ACCESS_KEY_ID=<YourAccessKeyId> AWS_SECRET_ACCESS_KEY=<YourSecretAccessKey> ./kinesis_video_gstreamer_sample_app <stream_name>
