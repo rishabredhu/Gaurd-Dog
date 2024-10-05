@@ -77,3 +77,4 @@ We have developed two microservices, one microservice provides the User Interfac
 
 6. AWS_ACCESS_KEY_ID=<YourAccessKeyId> AWS_SECRET_ACCESS_KEY=<YourSecretAccessKey> ./kinesis_video_gstreamer_sample_app <stream_name>
 ```
+# Gaurd-Dog
